@@ -17,5 +17,7 @@
 			<default-portlet-decorator>true</default-portlet-decorator>
 			<portlet-decorator-css-class>portlet-decorate</portlet-decorator-css-class>
 		</portlet-decorator>
+		<!-- Templates personalizados -->
+        <template-path>/templates/login.ftl</template-path>
 	</theme>
 </look-and-feel>

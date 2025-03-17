@@ -6,7 +6,7 @@
     </div>
     
     <!-- Carrossel de Quartos -->
-    <div id="roomCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div id="roomCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <!-- Indicadores do carrossel -->
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#roomCarousel" data-bs-slide-to="0" class="active"></button>

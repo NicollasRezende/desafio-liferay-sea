@@ -33,12 +33,45 @@
     }
 
     /* ======================================================
+       EFEITO FADE DO CARROSSEL
+    ====================================================== */
+    
+    &.carousel-fade {
+        .carousel-inner {
+            .carousel-item {
+                opacity: 0;
+                transition: opacity .6s ease;
+                
+                &.active,
+                &.carousel-item-next.carousel-item-start,
+                &.carousel-item-prev.carousel-item-end {
+                    opacity: 1;
+                }
+                
+                &.active.carousel-item-start,
+                &.active.carousel-item-end {
+                    opacity: 0;
+                }
+                
+                &.carousel-item-next,
+                &.carousel-item-prev,
+                &.active,
+                &.active.carousel-item-start,
+                &.active.carousel-item-end {
+                    transform: translateX(0);
+                }
+            }
+        }
+    }
+
+    /* ======================================================
        ITEM DO CARROSSEL
     ====================================================== */
 
     .carousel-item {
         height: 600px;
         position: relative;
+        background-color: v.$background-dark; // Fundo igual ao da página
 
         // Gradiente para melhorar visibilidade do texto
         &::before {
@@ -64,6 +97,11 @@
             width: 100%;
             transform: scale(1);
             transition: transform 10s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
         }
 
         &.active img {

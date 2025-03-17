@@ -11,14 +11,13 @@
 .header-main {
     position: fixed;
     width: 100%;
-    top: 56px;
+    top: var(--control-menu-height, 0);
     z-index: z.z('header');
     background: rgba(v.$background-dark, 0.9);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(v.$accent, 0.1);
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
     transition: all var(--transition-normal);
-
     // Estado quando a página é scrollada
     &.scrolled {
         padding: 0.2rem 0;

@@ -21,28 +21,50 @@
 </head>
 
 <body class="${css_class}">
-	<@liferay_ui["quick-access"]
-		contentId="#main-content" />
-	<@liferay_util["include"]
-		page=body_top_include />
-	<@liferay.control_menu />
 	<div class="container-fluid position-relative" id="wrapper">
+		<@liferay_ui["quick-access"]
+			contentId="#main-content" />
+		<@liferay_util["include"]
+			page=body_top_include />
+		<@liferay.control_menu />
 		<#include "${full_templates_path}/header.ftl">
-			<#include "${full_templates_path}/hero.ftl">
-				<#include "${full_templates_path}/quartos.ftl">
-					<#include "${full_templates_path}/services.ftl">
-						<#include "${full_templates_path}/about.ftl">
-							<#include "${full_templates_path}/depoimentos.ftl">
-								<#include "${full_templates_path}/contacts.ftl">
-									<#include "${full_templates_path}/footer.ftl">
+			<#if themeDisplay.isSignedIn()>
+				<#include "${full_templates_path}/hero.ftl">
+			</#if>
+			<main id="content" role="main">
+				<h1 class="hide-accessible sr-only">
+					${the_title}
+				</h1>
+				<#if selectable>
+					<@liferay_util["include"]
+						page=content_include />
+					<#else>
+						${portletDisplay.recycle()}
+						${portletDisplay.setTitle(the_title)}
+						<@liferay_theme["wrap-portlet"]
+							page="portlet.ftl">
+							<@liferay_util["include"]
+								page=content_include />
+							</@>
+				</#if>
+				<#-- <#include "${full_templates_path}/depoimentos.ftl"> -->
+			</main>
+			<#-- <#include "${full_templates_path}/quartos.ftl"> -->
+				<#if themeDisplay.isSignedIn()>
+					<#include "${full_templates_path}/about.ftl">
+						<#include "${full_templates_path}/services.ftl">
+							<#include "${full_templates_path}/contacts.ftl">
+								<@liferay_util["include"]
+									page=body_bottom_include />
+								<@liferay_util["include"]
+									page=bottom_include />
+				</#if>
+				<#include "${full_templates_path}/footer.ftl">
 	</div>
-	<@liferay_util["include"]
-		page=body_bottom_include />
-	<@liferay_util["include"]
-		page=bottom_include />
 	<!-- inject:js -->
 	<!-- endinject -->
-	<script src="${htmlUtil.escape(portalUtil.getStaticResourceURL(request, '${js_folder}/main.js'))}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	<script src="${javascript_folder}/main.js"></script>>
 </body>
 
 </html>
